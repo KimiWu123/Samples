@@ -1,4 +1,4 @@
-package ethereumutil
+package goclientcommon
 
 import (
 	"context"
