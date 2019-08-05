@@ -50,6 +50,23 @@ func GetNonceFromPrivatekey(client *ethclient.Client, key *ecdsa.PrivateKey) uin
 	return GetNonce(client, crypto.PubkeyToAddress(*publicKeyECDSA))
 }
 
+// GetAddressFromPrivateKey ...
+func GetAddressFromPrivateKey(prvKey *ecdsa.PrivateKey) common.Address {
+	publicKey := prvKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		fmt.Println("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+		return common.HexToAddress("")
+	}
+	return crypto.PubkeyToAddress(*publicKeyECDSA)
+}
+
+// GetAddressFromPrivateKeyString ...
+func GetAddressFromPrivateKeyString(prv string) common.Address {
+	prvKey, _ := crypto.HexToECDSA(prv)
+	return GetAddressFromPrivateKey(prvKey)
+}
+
 // GetBalance ...
 func GetBalance(client *ethclient.Client, address common.Address) *big.Int {
 	balance, err := client.BalanceAt(context.Background(), address, nil)
