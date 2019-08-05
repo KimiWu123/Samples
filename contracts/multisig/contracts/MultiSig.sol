@@ -66,6 +66,7 @@ contract MultiSig {
     function updateAdmins(address[] memory _newAdmins)
     public
     whenFinalized {
+        require(isAdmin(msg.sender), "Not ADMIN");
         setInitial();
         updatePendingAdmins(_newAdmins);
     }
