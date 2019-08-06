@@ -1,3 +1,3 @@
-`multisig` used to change admins/owners
+`multisig` used to change admins/owners with multi-sig mechanism
 
 # Description
