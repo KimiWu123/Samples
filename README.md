@@ -1,5 +1,5 @@
 # Samples
-Plan to put smart contract and golang samples here.
+Samples of Ethereum smart contracts and golang for beginners.
 
 
 ## Smart contracts
