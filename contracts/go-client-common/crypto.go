@@ -2,6 +2,7 @@ package goclientcommon
 
 import (
 	"crypto/ecdsa"
+	"fmt"
 
 	"github.com/ethereum/go-ethereum/crypto"
 )
@@ -15,7 +16,9 @@ type Signature struct {
 }
 
 func SignWithBytes(message []byte, key *ecdsa.PrivateKey) (Signature, error) {
-	hashRaw := crypto.Keccak256(message)
+	hashMsg := crypto.Keccak256(message)
+	msg := fmt.Sprintf("\x19Ethereum Signed Message:\n%d%s", len(hashMsg), hashMsg)
+	hashRaw := crypto.Keccak256([]byte(msg))
 	signature, err := crypto.Sign(hashRaw, key)
 	if err != nil {
 		return Signature{}, err
