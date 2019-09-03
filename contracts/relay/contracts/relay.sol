@@ -11,9 +11,10 @@ contract Relay {
     constructor() public {
     }
       // original forward function copied from https://github.com/uport-project/uport-identity/blob/develop/contracts/Proxy.sol
-    function forward(bytes memory _sig, bytes memory _data, address _destination, uint _value)
+    function forward(bytes memory _sig, bytes memory _data, address _claimSigner, address _destination, uint _value)
     public {
         address signer = getSigner(keccak256(_data), _sig);
+        require(signer == _claimSigner, "sender is not signer");
         nonce[signer]++;
 
         //execute the transaction with all the given parameters
@@ -29,6 +30,7 @@ contract Relay {
             success := call(gas, to, value, add(data, 0x20), mload(data), 0, 0)
         }
     }
+
 
     function getSigner(bytes32 _hash, bytes memory _signature)
     internal pure
