@@ -2,8 +2,6 @@ pragma solidity ^0.5.8;
 
 contract Relay {
 
-    //to avoid replay
-    mapping(address => uint) public nonce;
     uint  public constant gas = 5**9;
 
     event Forwarded (bytes sig, address signer, address destination, uint value, bytes data);
@@ -15,7 +13,6 @@ contract Relay {
     public {
         address signer = getSigner(keccak256(_data), _sig);
         require(signer == _claimSigner, "sender is not signer");
-        nonce[signer]++;
 
         //execute the transaction with all the given parameters
         require(executeCall(_destination, _value, _data), "execute Call failed.");
