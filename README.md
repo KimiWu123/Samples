@@ -8,6 +8,7 @@ Not only smart contract examples but also workable client sample codes, golang o
 * 1. [ecrecover](./contracts/ecrecover/)
 * 2. [multisig](./contracts/multisig/)
 * 3. [ballot](./contracts/ballot)
+* 4. [relay](./contracts/relay)
 
 ## Golang
 * [simple API](./go/api)
