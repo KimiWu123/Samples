@@ -73,7 +73,12 @@ func (s *Server) addHandlers() {
 	s.addRoutes([]Route{
 		{Name: "test", Method: "GET", Pattern: "/v1/test", HandlerFunc: handler.Test},
 		{Name: "say hello", Method: "GET", Pattern: "/v1/sayhello", HandlerFunc: handler.SayHello},
+		{Name: "upload files", Method: "POST", Pattern: "/v1/upload", HandlerFunc: handler.Upload},
 		{Name: "push", Method: "POST", Pattern: "/v1/post", HandlerFunc: handler.PostMessage}})
+
+	// special case for downloading
+	s.router.PathPrefix("/v1/download/").Handler(
+		http.StripPrefix("/v1/download/", http.FileServer(http.Dir("./upload"))))
 }
 
 func (s *Server) addRoutes(routes []Route) error {
