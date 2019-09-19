@@ -24,8 +24,6 @@ func (*SampleHandler) SayHello(w http.ResponseWriter, r *http.Request) {
 }
 
 func (*SampleHandler) PostMessage(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1024*1024))
 	if err != nil {
 		msg := fmt.Sprintf("read http body failed, %s", err.Error())
@@ -70,4 +68,25 @@ func (*SampleHandler) Upload(w http.ResponseWriter, r *http.Request) {
 	}
 	defer f.Close()
 	io.Copy(f, file)
+}
+
+// example: http://127.0.0.1:8088/v1/query?parm1=this_is_var1&parm2=this_is_var2
+func (*SampleHandler) PostMessageWithQuery(w http.ResponseWriter, r *http.Request) {
+
+	var1, var2 := "", ""
+	parm1, ok := r.URL.Query()["parm1"]
+	if !ok || len(parm1[0]) == 0 {
+		fmt.Println("parm1 is null")
+	} else {
+		var1 = parm1[0]
+	}
+	parm2, ok := r.URL.Query()["parm2"]
+	if !ok || len(parm2[0]) == 0 {
+		fmt.Println("parm2 is null")
+	} else {
+		var2 = parm2[0]
+	}
+
+	fmt.Printf("Got parm1:%s, parm2:%s\n", var1, var2)
+	w.Write([]byte("I don't care what you sent, here are your query values\n" + var1 + ", " + var2))
 }

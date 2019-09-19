@@ -17,6 +17,7 @@ type Route struct {
 	Name        string
 	Method      string
 	Pattern     string
+	Queries     []string
 	HandlerFunc http.HandlerFunc
 }
 
@@ -65,7 +66,7 @@ func (s *Server) addHandlers() {
 		{Name: "version", Method: "GET", Pattern: "/v", HandlerFunc: http.HandlerFunc(version)},
 		{Name: "version", Method: "GET", Pattern: "/version", HandlerFunc: http.HandlerFunc(version)}})
 
-	// public dao
+	// Sample handler...
 	handler := handlers.NewSampleHandler()
 	if handler == nil {
 		panic("new sample handler failed")
@@ -74,7 +75,9 @@ func (s *Server) addHandlers() {
 		{Name: "test", Method: "GET", Pattern: "/v1/test", HandlerFunc: handler.Test},
 		{Name: "say hello", Method: "GET", Pattern: "/v1/sayhello", HandlerFunc: handler.SayHello},
 		{Name: "upload files", Method: "POST", Pattern: "/v1/upload", HandlerFunc: handler.Upload},
-		{Name: "push", Method: "POST", Pattern: "/v1/post", HandlerFunc: handler.PostMessage}})
+		{Name: "push", Method: "POST", Pattern: "/v1/post", HandlerFunc: handler.PostMessage},
+		{Name: "query", Method: "GET", Pattern: "/v1/query", Queries: []string{"parm1", "parm2"}, HandlerFunc: handler.PostMessageWithQuery},
+	})
 
 	// special case for downloading
 	s.router.PathPrefix("/v1/download/").Handler(
@@ -89,6 +92,13 @@ func (s *Server) addRoutes(routes []Route) error {
 			Path(route.Pattern).
 			Name(route.Name).
 			Handler(handler)
+		if len(route.Queries) > 0 {
+			for _, q := range route.Queries {
+				if len(q) > 0 {
+					s.router.Queries(q, "{"+q+"}")
+				}
+			}
+		}
 	}
 	return nil
 }
