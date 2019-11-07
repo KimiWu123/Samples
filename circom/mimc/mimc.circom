@@ -1,4 +1,4 @@
-include "../../circomlib/circuits/mimcsponge.circom";
+include "../circomlib/circuits/mimcsponge.circom";
 
 template example_MiMC() {
     var numInput = 2; // length of vector_inputs[]
