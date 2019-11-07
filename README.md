@@ -1,5 +1,5 @@
 # Samples
-Samples of Ethereum smart contracts and golang for beginners.
+Samples of Ethereum smart contracts, golang for beginners and circom(arithmetic circuits for zkp).
 
 
 ## Smart contracts
@@ -12,3 +12,6 @@ Not only smart contract examples but also workable client sample codes, golang o
 
 ## Golang
 * [simple API](./go/api)
+
+## Circom
+* [MiMC](./circom/mimc)
