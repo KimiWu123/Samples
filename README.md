@@ -15,3 +15,4 @@ Not only smart contract examples but also workable client sample codes, golang o
 
 ## Circom
 * [MiMC](./circom/mimc)
+* [EdDSA](./circom/eddsa)
