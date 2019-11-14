@@ -1,0 +1,7 @@
+{
+  "main": "index.js",
+  "dependencies": {
+    "circomlib": "0.0.19"
+  },
+  "private": true
+}
