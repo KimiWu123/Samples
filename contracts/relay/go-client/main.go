@@ -107,7 +107,7 @@ func main() {
 			fmt.Println("*** Got \"Run\" event")
 			var evObj sample.SampleRun
 			sampleABI.Unpack(&evObj, "Run", aLog.Data)
-			fmt.Printf("msg.sender:%v, somevalue:%v, timestamp:%v\n", evObj.Sender.Hex(), evObj.Somevalue, evObj.Timestamp)
+			fmt.Printf("somevalue:%v, timestamp:%v\n", evObj.Somevalue, evObj.Timestamp)
 		}
 	}
 
