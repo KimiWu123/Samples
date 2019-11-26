@@ -43,3 +43,9 @@ So far, circom doesn't have many documentations and examples. This repo is tryin
 Check Iden3 [tutorial](https://github.com/iden3/circom/blob/master/TUTORIAL.md) for more details.
 
 Step 2 ~ 6, you can use `build.sh` to run automatically.
+```
+bash ./build.sh <relative path of circuit.json> 
+
+eg.
+bash ./build.sh ./eddsaMiMCSponge
+```
