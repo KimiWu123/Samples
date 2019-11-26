@@ -18,6 +18,7 @@ if [ ! -f "witness.json" ]; then
     exit 1;
 fi
 
+SECONDS=0
 echo "setting up..."
 snarkjs setup 
 if [ ! -f "proving_key.json" ]; then
@@ -25,7 +26,9 @@ if [ ! -f "proving_key.json" ]; then
     cd -
     exit 1;
 fi
+echo "setup takes $SECONDS seconds"
 
+SECONDS=0
 echo "generating proof..."
 snarkjs proof
 if [ ! -f "proof.json" ]; then
@@ -33,8 +36,11 @@ if [ ! -f "proof.json" ]; then
     cd -
     exit 1;
 fi
+echo "generating proof takes $SECONDS seconds"
 
+SECONDS=0
 echo -e "verifying...\n"
 snarkjs verify
+echo "verifying takes $SECONDS seconds"
 
 cd -
