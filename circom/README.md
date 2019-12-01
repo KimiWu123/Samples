@@ -9,7 +9,13 @@ So far, circom doesn't have many documentations and examples. This repo is tryin
    ```
    `circuit.json` is generated.
 
-2. Calculate witness
+2. Setup
+   ```
+   snarkjs setup
+   ```
+   `proving_key.json` and `verification_key.json` are generated.
+   
+3. Calculate witness
    `input.json` is required. It looks like, 
    ```
    {
@@ -27,12 +33,6 @@ So far, circom doesn't have many documentations and examples. This repo is tryin
    snarkjs calculatewitness
    ```
    `witness.json` is generated.
-
-3. Setup
-   ```
-   snarkjs setup
-   ```
-   `proving_key.json` and `verification_key.json` are generated.
 
 4. Generate proof
    ```
