@@ -17,3 +17,4 @@ Not only smart contract examples but also workable client sample codes, golang o
 * [MiMC](./circom/mimc)
 * [EdDSA](./circom/eddsa)
 * [EdDSAMiMCSponge](./circom/eddsaMiMCSponge)
+* [SHA256](./circom/sha256)
