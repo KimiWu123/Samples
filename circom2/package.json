@@ -1,0 +1,14 @@
+{
+  "name": "circom2",
+  "version": "1.0.0",
+  "description": "circom samples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "circomlib": "^2.0.5"
+  }
+}
