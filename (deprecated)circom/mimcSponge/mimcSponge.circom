@@ -1,5 +1,6 @@
 include "./circomlib/mimcsponge.circom";
 
+
 template example_MiMC() {
     var numInput = 2; // length of vector_inputs[]
     var rounds = 220; 

@@ -5,7 +5,9 @@ template add() {
     signal input z;
     signal output out;
 
-    out <== (x * y) + z;
+
+    z <== x + y;
+    out <== (z + x) * y;
 }
 
 component main = add();
